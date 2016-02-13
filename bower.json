@@ -1,0 +1,22 @@
+{
+  "name": "unoesc-app-front",
+  "version": "0.0.0",
+  "authors": [
+    "Guilherme Siquinelli <guiseek@gmail.com>"
+  ],
+  "description": "Unoesc App Front",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "bootstrap": "~3.3.6"
+  }
+}
