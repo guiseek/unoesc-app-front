@@ -3,7 +3,12 @@
         <h1 class="page-header">Cervejarias</h1>
     </div>
 </section>
-
+<section class="row" ng-show="vm.error || vm.success">
+    <div class="col-md-12">
+        <p class="alert alert-success" ng-show="vm.success">{{ vm.success.message }}</p>
+        <p class="alert alert-danger" ng-show="vm.error">{{ vm.error.message }}</p>
+    </div>
+</section>
 <div class="row">
     <section class="col-md-6">
         <table class="table table-striped table-hover">
@@ -11,12 +16,21 @@
                 <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="brewery in vm.breweries">
                     <td>{{ brewery.name }}</td>
                     <td>{{ brewery.description }}</td>
+                    <td>
+                        <button type="button" ng-click="vm.populate(brewery)" class="btn btn-xs btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button type="button" ng-click="vm.remove(brewery)" class="btn btn-xs btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
