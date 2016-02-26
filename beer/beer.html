@@ -1,6 +1,6 @@
 <section class="row">
     <div class="col-md-12">
-        <h1 class="page-header">Cervejarias</h1>
+        <h1 class="page-header">Cervejas</h1>
     </div>
 </section>
 <section class="row" ng-show="vm.error || vm.success">
@@ -16,22 +16,24 @@
                 <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
+                    <th>Cervejaria</th>
                     <th>Criado em</th>
                     <th>Alterado em</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="brewery in vm.breweries">
-                    <td>{{ brewery.name }}</td>
-                    <td>{{ brewery.description }}</td>
-                    <td>{{ brewery.created | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-                    <td>{{ brewery.updated | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                <tr ng-repeat="beer in vm.beers">
+                    <td>{{ beer.name }}</td>
+                    <td>{{ beer.description }}</td>
+                    <td>{{ beer.brewery.name }}</td>
+                    <td>{{ beer.created | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ beer.updated | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                     <td>
-                        <button type="button" ng-click="vm.populate(brewery)" class="btn btn-xs btn-default">
+                        <button type="button" ng-click="vm.populate(beer)" class="btn btn-xs btn-default">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button type="button" ng-click="vm.remove(brewery)" class="btn btn-xs btn-danger">
+                        <button type="button" ng-click="vm.remove(beer)" class="btn btn-xs btn-danger">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>
@@ -40,21 +42,30 @@
         </table>
     </section>
     <section class="col-md-4">
-        <form ng-submit="vm.save(vm.brewery)" name="breweryForm">
+        {{ vm.beer }}
+        <form ng-submit="vm.save(vm.beer)" name="beerForm">
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" class="form-control" ng-model="vm.brewery.name" required autofocus>
+                    <input type="text" id="name" class="form-control" ng-model="vm.beer.name" required autofocus>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="description">Descrição</label>
-                    <input type="text" id="description" class="form-control" ng-model="vm.brewery.description">
+                    <input type="text" id="description" class="form-control" ng-model="vm.beer.description">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="brewery">Cervejaria</label>
+                    <select id="brewery" class="form-control" ng-model="vm.beer.brewery" ng-options="brewery as brewery.name for brewery in vm.breweries track by brewery._id">
+                        <option value="">- Selecione um -</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        <button class="btn btn-success" ng-disabled="breweryForm.$invalid">Salvar</button>
+                        <button class="btn btn-success" ng-disabled="beerForm.$invalid">Salvar</button>
                         <button type="reset" ng-click="vm.reset()" class="btn btn-warning">Limpar</button>
                     </div>
                 </div>

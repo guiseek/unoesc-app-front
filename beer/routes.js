@@ -1,15 +1,15 @@
-(function(){
+(function() {
     'use strict';
     
     angular
-        .module('app', ['ngRoute', 'brewery','beer'])
+        .module('beer')
         .config(Config);
     
     function Config($routeProvider) {
         $routeProvider
-            .when('/', {
-                templateUrl: 'app/app.html',
-                controller: 'AppController',
+            .when('/beers', {
+                templateUrl: 'beer/beer.html',
+                controller: 'BeerController',
                 controllerAs: 'vm'
             });
     }
