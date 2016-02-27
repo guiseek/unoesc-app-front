@@ -30,7 +30,6 @@
         }
         vm.findAll = function() {
             UserService.findAll().then(function(response) {
-                console.log(response.data);
                 vm.users = response.data;
             },function(error) {
                 console.error(error);

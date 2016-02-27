@@ -5,7 +5,9 @@
         .module('app')
         .controller('AppController', AppController);
     
-    function AppController() {
-        
+    AppController.$inject = ['Storage','$location'];
+    
+    function AppController(Storage, $location) {
+        var vm = this;
     }
 })();
