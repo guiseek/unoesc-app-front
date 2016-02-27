@@ -1,0 +1,64 @@
+<section class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">Usuários</h1>
+    </div>
+</section>
+<section class="row" ng-show="vm.error || vm.success">
+    <div class="col-md-12">
+        <p class="alert alert-success" ng-show="vm.success">{{ vm.success.message }}</p>
+        <p class="alert alert-danger" ng-show="vm.error">{{ vm.error.message }}</p>
+    </div>
+</section>
+<div class="row">
+    <section class="col-md-8">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in vm.users">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <button type="button" ng-click="vm.populate(user)" class="btn btn-xs btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button type="button" ng-click="vm.remove(user)" class="btn btn-xs btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="col-md-4">
+        <form ng-submit="vm.save(vm.user)" name="userForm">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" class="form-control" ng-model="vm.user.name" required autofocus>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" ng-model="vm.user.email">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="form-control" ng-model="vm.user.password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button class="btn btn-success" ng-disabled="userForm.$invalid">Salvar</button>
+                        <button type="reset" ng-click="vm.reset()" class="btn btn-warning">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
